@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hype Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+
+    .loja {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .produto {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .produto:hover {
+      transform: scale(1.03);
+    }
+
+    .produto img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .produto h3 {
+      margin: 10px 0 5px;
+    }
+
+    .produto p {
+      margin: 0 0 10px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .produto button {
+      padding: 8px 15px;
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .modal-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .modal-content button {
+      margin-top: 20px;
+    }
+
+    .close {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      float: right;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Hype Store
+  </header>
+
+  <section class="loja">
+    <h2 style="text-align:center;">Loja</h2>
+    <div class="produtos">
+      <div class="produto">
+        <img src="https://via.placeholder.com/300x180?text=Mimic+Octupos" alt="Mimic Octupos">
+        <h3>Mimic Octupos</h3>
+        <p>R$ 30,00</p>
+        <button onclick="abrirModal('Mimic Octupos', '30,00')">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="https://via.placeholder.com/300x180?text=7.5T" alt="7.5T">
+        <h3>7.5T</h3>
+        <p>R$ 7,00</p>
+        <button onclick="abrirModal('7.5T', '7,00')">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="https://via.placeholder.com/300x180?text=60T" alt="60T">
+        <h3>60T</h3>
+        <p>R$ 14,00</p>
+        <button onclick="abrirModal('60T', '14,00')">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="https://via.placeholder.com/300x180?text=650T" alt="650T">
+        <h3>650T</h3>
+        <p>R$ 20,00</p>
+        <button onclick="abrirModal('650T', '20,00')">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="https://via.placeholder.com/300x180?text=7.7QD" alt="7.7QD">
+        <h3>7.7QD</h3>
+        <p>R$ 40,00</p>
+        <button onclick="abrirModal('7.7QD', '40,00')">Comprar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal" id="modalCompra">
+    <div class="modal-content">
+      <button class="close" onclick="fecharModal()">X</button>
+      <h3 id="modalProduto"></h3>
+      <p id="modalPreco"></p>
+      <a id="btnComprar" href="#" target="_blank">
+        <button>Finalizar Compra via WhatsApp</button>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Hype Store - Todos os direitos reservados
+  </footer>
+
+  <script>
+    function abrirModal(produto, preco) {
+      document.getElementById("modalProduto").innerText = produto;
+      document.getElementById("modalPreco").innerText = "Preço: R$ " + preco;
+      const mensagem = encodeURIComponent(`Olá! Tenho interesse em comprar o produto: ${produto} por R$ ${preco}`);
+      document.getElementById("btnComprar").href = `https://wa.me/5511984071037?text=${mensagem}`;
+      document.getElementById("modalCompra").style.display = "flex";
+    }
+
+    function fecharModal() {
+      document.getElementById("modalCompra").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
